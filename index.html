@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<title>오사카·교토 3박 4일</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: 핀테크 앱식 카드 시스템 — 회색 바탕 위 흰 카드, 주홍(도리이) 브랜드 컬러 하나와 일차별 보조색 4개, 4px 간격 그리드 */
+:root{
+  /* color */
+  --brand:#f2542d;
+  --brand-weak:#fff0eb;
+  --brand-strong:#d63f1b;
+  --bg:#f2f4f6;
+  --card:#ffffff;
+  --ink:#191f28;
+  --ink-2:#4e5968;
+  --ink-3:#8b95a1;
+  --line:#e5e8eb;
+  --fill:#f9fafb;
+  --d1:#f2542d; --d1w:#fff0eb;
+  --d2:#0ca678; --d2w:#e6f8f1;
+  --d3:#f08c00; --d3w:#fff4e0;
+  --d4:#4c6ef5; --d4w:#edf2ff;
+  --warn:#f08c00; --ok:#0ca678;
+  /* type */
+  --font:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --t-xs:12px; --t-sm:13px; --t-md:15px; --t-lg:17px; --t-xl:20px; --t-2xl:24px; --t-3xl:30px;
+  /* shape */
+  --r-sm:10px; --r-md:14px; --r-lg:20px; --r-pill:999px;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --s10:40px;
+  --shadow:0 1px 2px rgba(25,31,40,.04),0 4px 16px rgba(25,31,40,.04);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg);min-height:100lvh}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;min-height:100lvh;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--t-md);line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(242,84,45,.35);outline-offset:2px;border-radius:8px}
+h1,h2,h3,h4{margin:0;text-wrap:balance;letter-spacing:-.02em}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1040px;margin:0 auto;padding:0 var(--s4)}
+
+/* app bar */
+.appbar{position:sticky;top:0;z-index:10;padding-top:env(safe-area-inset-top);background:rgba(255,255,255,.92);backdrop-filter:saturate(1.6) blur(12px);border-bottom:1px solid var(--line)}
+.appbar .wrap{display:flex;align-items:center;gap:var(--s3);height:56px}
+.logo{width:32px;height:32px;border-radius:10px;background:var(--brand);display:grid;place-items:center;flex:none}
+.logo svg{width:18px;height:18px}
+.appbar .ttl{font-weight:800;font-size:var(--t-lg)}
+.appbar .dday{margin-left:auto;font-weight:700;font-size:var(--t-sm);color:var(--brand);background:var(--brand-weak);padding:4px 10px;border-radius:var(--r-pill)}
+.tabs{border-top:1px solid var(--line);background:#fff}
+.tabs .wrap{display:flex;gap:var(--s2);overflow-x:auto;padding-top:var(--s2);padding-bottom:var(--s2);scrollbar-width:none}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tabs a{flex:none;font-size:var(--t-sm);font-weight:700;color:var(--ink-2);padding:7px 14px;border-radius:var(--r-pill);background:var(--fill);border:1px solid var(--line)}
+.tabs a:hover{color:var(--ink)}
+.tabs a[data-c]{display:inline-flex;align-items:center;gap:6px}
+.tabs a[data-c]::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+
+main{padding:var(--s5) 0 var(--s10)}
+section{margin-top:var(--s8);scroll-margin-top:118px}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;margin:0 var(--s1) var(--s3)}
+.sh h2{font-size:var(--t-xl);font-weight:800}
+.sh p{margin:0;font-size:var(--t-sm);color:var(--ink-3)}
+.card{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--s5)}
+.card + .card{margin-top:var(--s3)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--s3)}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+.hero .main{background:var(--brand);color:#fff;border-radius:var(--r-lg);padding:var(--s6);position:relative;overflow:hidden}
+.hero .main::after{content:"";position:absolute;right:-40px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero .main::before{content:"";position:absolute;right:60px;bottom:-90px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero .eyebrow{font-size:var(--t-sm);font-weight:700;opacity:.85}
+.hero h1{font-size:var(--t-3xl);font-weight:800;line-height:1.25;margin:var(--s2) 0 var(--s3)}
+.hero .period{font-size:var(--t-lg);font-weight:700}
+.hero .route{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s5);position:relative;z-index:1}
+.hero .route span{font-size:var(--t-sm);font-weight:700;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:var(--r-pill)}
+.side{display:grid;gap:var(--s3)}
+
+/* list rows */
+.rows{display:grid}
+.row{display:flex;align-items:center;gap:var(--s3);padding:var(--s3) 0}
+.row + .row{border-top:1px solid var(--line)}
+.ico{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--fill);color:var(--ink-2)}
+.ico svg{width:20px;height:20px}
+.row .tx{flex:1;min-width:0}
+.row .t1{font-weight:700;font-size:var(--t-md)}
+.row .t2{font-size:var(--t-sm);color:var(--ink-3)}
+.row .rt{text-align:right;font-weight:700;font-size:var(--t-md);flex:none}
+.row .rt small{display:block;font-weight:500;font-size:var(--t-xs);color:var(--ink-3)}
+.label{font-size:var(--t-xs);font-weight:700;color:var(--ink-3);margin-bottom:var(--s1)}
+
+/* summary */
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+@media (max-width:900px){.sum{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.sum{grid-template-columns:1fr}}
+.sum a{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s2);transition:transform .15s}
+.sum a:hover{transform:translateY(-2px)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:var(--t-xs);font-weight:700;padding:3px 9px;border-radius:var(--r-pill);background:var(--cw);color:var(--c);width:max-content}
+.sum h3{font-size:var(--t-lg);font-weight:800}
+.sum p{margin:0;font-size:var(--t-sm);color:var(--ink-2)}
+.sum .stay{margin-top:auto;padding-top:var(--s2);font-size:var(--t-xs);color:var(--ink-3);font-weight:500}
+
+/* day */
+.dayhead{display:flex;gap:var(--s3);align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin:0 var(--s1) var(--s3)}
+.dayhead h2{font-size:var(--t-2xl);font-weight:800;margin-top:var(--s2)}
+.btns{display:flex;gap:var(--s2);flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:var(--t-sm);padding:9px 14px;border-radius:12px;background:var(--c);color:#fff;border:0;cursor:pointer}
+.btn.sub{background:var(--cw);color:var(--c)}
+.btn:hover{filter:brightness(.96)}
+.btn svg{width:16px;height:16px}
+.daygrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--s3);align-items:start}
+.daygrid .maps{order:2;position:sticky;top:122px;display:grid;gap:var(--s3)}
+@media (max-width:860px){.daygrid{grid-template-columns:1fr}.daygrid .maps{order:0;position:static}}
+.gmap{margin:0;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+.gmap img{display:block;width:100%;height:auto}
+.gmap figcaption{display:flex;gap:var(--s2);align-items:baseline;padding:var(--s3) var(--s4);font-size:var(--t-sm);color:var(--ink-2)}
+.gmap figcaption .badge{flex:none}
+
+.tl{list-style:none;margin:0;padding:var(--s2) var(--s5);background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.tl li{display:grid;grid-template-columns:48px 1fr auto;gap:var(--s3);padding:var(--s3) 0;align-items:start}
+.tl li + li{border-top:1px solid var(--line)}
+.tl .t{font-weight:700;font-size:var(--t-sm);color:var(--ink-3);padding-top:2px}
+.tl li.key .t{color:var(--c)}
+.tl .cat{font-size:var(--t-xs);font-weight:700;color:var(--ink-3)}
+.tl li.key .cat{color:var(--c)}
+.tl .name{font-weight:700;font-size:var(--t-md)}
+.tl .what{font-size:var(--t-md);color:var(--ink)}
+.tl li.key .what{color:var(--ink-2);font-size:var(--t-sm)}
+.tl .meta{font-size:var(--t-sm);color:var(--ink-3);margin-top:2px}
+.tl .meta b{color:var(--brand);font-weight:700}
+.tl .go{align-self:center;font-size:var(--t-xs);font-weight:700;color:var(--c);background:var(--cw);padding:5px 10px;border-radius:var(--r-pill);white-space:nowrap}
+
+
+
+/* collapsible maps */
+details.fold{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);margin-bottom:var(--s3);overflow:hidden}
+details.fold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s3);padding:var(--s4) var(--s5)}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary .ttl2{font-weight:800;font-size:var(--t-md);flex:1}
+details.fold>summary .ttl2 small{display:block;font-weight:500;font-size:var(--t-xs);color:var(--ink-3);margin-top:2px}
+.mapbtn{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs);font-weight:800;color:var(--c,var(--brand));background:var(--cw,var(--brand-weak));padding:6px 12px;border-radius:var(--r-pill)}
+.mapbtn svg{width:14px;height:14px;transition:transform .2s}
+details[open]>summary .mapbtn svg{transform:rotate(180deg)}
+details[open]>summary .mapbtn .o{display:none}
+details:not([open])>summary .mapbtn .c{display:none}
+details.fold .body{padding:0 var(--s5) var(--s5)}
+.legrows{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);margin-bottom:var(--s3);padding:var(--s1) var(--s4)}
+details.lg{border-top:1px solid var(--line)}
+details.lg:first-child{border-top:0}
+details.lg>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:28px 1fr auto;gap:var(--s3);align-items:center;padding:var(--s3) 0}
+details.lg>summary::-webkit-details-marker{display:none}
+details.lg .n{width:24px;height:24px;border-radius:50%;background:var(--cw);color:var(--c);font-size:11px;font-weight:800;display:grid;place-items:center}
+details.lg .ab{font-weight:700;font-size:var(--t-sm);line-height:1.35}
+details.lg .ab i{font-style:normal;color:var(--ink-3);margin:0 3px}
+details.lg .mt{display:flex;align-items:center;gap:6px;margin-top:3px;font-size:var(--t-xs);color:var(--ink-2)}
+details.lg .lb{padding:0 0 var(--s4) 40px;display:grid;gap:var(--s2)}
+details.lg .lb img{width:100%;max-width:560px;border-radius:var(--r-md);border:1px solid var(--line);display:block}
+details.lg .lb .note{font-size:var(--t-sm);color:var(--ink-2)}
+details.lg .lb .btn{justify-self:start}
+.alts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--s3)}
+.alt{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--s4) var(--s5);display:grid;gap:4px}
+.alt .t1{font-weight:800}
+.alt .t2{font-size:var(--t-sm);color:var(--ink-2)}
+.alt .t3{font-size:var(--t-xs);color:var(--ink-3)}
+.alt a{font-size:var(--t-xs);font-weight:800;color:var(--brand)}
+@media (max-width:480px){details.lg .lb{padding-left:0}}
+
+.skips{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--s3)}
+.skip{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--s4) var(--s5);display:grid;gap:6px;border-top:3px solid var(--line)}
+.skip .t1{font-weight:800}
+.skip .t3{font-size:var(--t-xs);color:var(--ink-3)}
+.skip .why,.skip .how{font-size:var(--t-sm);color:var(--ink-2)}
+.skip .why b,.skip .how b{display:inline-block;font-size:var(--t-xs);font-weight:800;margin-right:6px;padding:1px 8px;border-radius:var(--r-pill)}
+.skip .why b{background:var(--fill);color:var(--ink-3);border:1px solid var(--line)}
+.skip .how b{background:var(--cw);color:var(--c)}
+.skip a{font-size:var(--t-xs);font-weight:800;color:var(--c)}
+
+/* risk tags in timetable */
+.rk{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px;margin:3px 4px 0 0;white-space:nowrap;line-height:1.6}
+.rk.cash{background:#ffe8e3;color:#d63f1b}
+.rk.off{background:#fff1d6;color:#b35c00}
+.rk.hr{background:var(--fill);color:var(--ink-2);border:1px solid var(--line)}
+.rk.late{background:#ffe8e3;color:#d63f1b}
+.rk.warn{background:#fff1d6;color:#b35c00}
+.tt li.risk{position:relative}
+.tt li.risk::before{content:"";position:absolute;left:-12px;top:10px;bottom:10px;width:3px;border-radius:2px;background:#f2542d}
+.tt li .w small.plain{display:block;color:var(--ink-3);font-size:var(--t-xs);margin-top:2px}
+.rklegend{display:flex;flex-wrap:wrap;gap:4px 2px;align-items:center;font-size:var(--t-xs);color:var(--ink-3);padding:2px 0 8px}
+/* calendar */
+.calwrap{background:var(--card);border-radius:0;box-shadow:var(--shadow);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cal{display:flex;min-width:680px;padding:0 var(--s3) var(--s3) 0}
+.cal .axis{flex:none;width:44px;position:sticky;left:0;z-index:3;background:var(--card)}
+.cal .axis .sp{height:58px;border-bottom:2px solid var(--line)}
+.cal .axis .tk{position:relative}
+.cal .axis .tk span{position:absolute;right:6px;font-size:10px;font-weight:700;color:var(--ink-3);transform:translateY(-50%)}
+.cal .day{flex:1 1 0;min-width:150px;margin-left:6px}
+.cal .hd{height:58px;display:flex;flex-direction:column;justify-content:center;padding:0 6px;font-weight:800;font-size:var(--t-sm);border-bottom:2px solid var(--c)}
+.cal .hd small{font-weight:500;font-size:var(--t-xs);color:var(--ink-3)}
+.cal .col{position:relative;background:repeating-linear-gradient(to bottom,var(--line) 0,var(--line) 1px,transparent 1px,transparent var(--hh))}
+.cal .ev{position:absolute;left:2px;right:2px;border-radius:0;padding:3px 6px;font-size:11px;line-height:1.3;overflow:hidden;background:var(--cw);border-left:3px solid var(--c);color:var(--ink);text-decoration:none;box-sizing:border-box}
+.cal .ev.minor{background:var(--fill);border-left-color:#c9cfd6;color:var(--ink-3)}
+.cal .ev .tm{font-size:10px;font-weight:800;color:var(--ink-3);margin-right:4px}
+.cal .ev b{font-weight:800}
+.cal .ev.short{display:flex;align-items:center;white-space:nowrap;text-overflow:ellipsis;padding-top:0;padding-bottom:0}
+.cal .ev.short b{overflow:hidden;text-overflow:ellipsis}
+.cal .ev .ri{font-size:10px;margin-left:3px}
+.cal .ev.has-risk{background:color-mix(in srgb,var(--c) 22%,#fff);box-shadow:inset 0 0 0 2px var(--c);border-left-width:5px}
+.cal .ev.has-risk .tm{color:var(--c)}
+.cal .ev .chk{position:absolute;right:4px;top:3px;font-size:9px;font-weight:800;color:#fff;background:var(--c);padding:0 5px;line-height:15px}
+.cal .ev.short .chk{top:50%;transform:translateY(-50%)}
+.callegend{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:var(--t-xs);color:var(--ink-2);margin:0 var(--s1) var(--s3)}
+.callegend i{display:inline-block;width:22px;height:14px;vertical-align:middle;margin-right:5px;box-sizing:border-box}
+.callegend .n{background:var(--d2w);border-left:3px solid var(--d2)}
+.callegend .r{background:color-mix(in srgb,var(--d2) 22%,#fff);box-shadow:inset 0 0 0 2px var(--d2);border-left:5px solid var(--d2)}
+.callegend .m{background:var(--fill);border-left:3px solid #c9cfd6}
+.cal .ev:focus-visible{outline:2px solid var(--brand)}
+/* overview illustrated map */
+.ov{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--s3);align-items:start}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--s3)}
+.chips span{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs);font-weight:700;color:var(--ink-2);background:var(--fill);border:1px solid var(--line);padding:4px 10px 4px 4px;border-radius:var(--r-pill)}
+.chips b{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:10px;background:var(--c)}
+@media (max-width:860px){.ov{grid-template-columns:1fr}}
+.ovmap{position:relative;border-radius:var(--r-md);overflow:hidden;background:var(--fill)}
+.ovmap svg{display:block;width:100%;height:auto}
+.ovmap .gm{position:absolute;left:8px;bottom:8px;font-size:10px;font-weight:700;color:var(--ink-2);background:rgba(255,255,255,.85);padding:2px 6px;border-radius:6px}
+/* stop flow */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 var(--s1) var(--s3)}
+.flow .stop{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-sm);font-weight:700;background:var(--card);padding:6px 10px 6px 6px;border-radius:var(--r-pill);box-shadow:var(--shadow)}
+.flow .stop b{width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:11px}
+.flow .arr{color:var(--ink-3);font-size:12px}
+/* leg cards */
+.legs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:var(--s3);margin-bottom:var(--s3)}
+.leg{all:unset;box-sizing:border-box;cursor:pointer;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.leg:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(25,31,40,.06),0 10px 24px rgba(25,31,40,.08)}
+.leg:focus-visible{outline:3px solid rgba(242,84,45,.35);outline-offset:2px}
+.leg .th{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--fill)}
+.leg .th img{width:100%;height:100%;object-fit:cover;display:block}
+.leg .no{position:absolute;left:10px;top:10px;font-size:11px;font-weight:800;color:#fff;background:var(--c);border-radius:var(--r-pill);padding:2px 8px}
+.leg .bd{padding:var(--s3) var(--s4) var(--s4);display:grid;gap:4px}
+.leg .ab{font-weight:800;font-size:var(--t-md);line-height:1.35}
+.leg .ab i{font-style:normal;color:var(--ink-3);font-weight:500;margin:0 2px}
+.leg .mt{display:flex;align-items:center;gap:6px;font-size:var(--t-sm);color:var(--ink-2)}
+.mode{display:inline-flex;align-items:center;gap:4px;font-size:var(--t-xs);font-weight:700;padding:2px 8px;border-radius:var(--r-pill);background:var(--cw);color:var(--c)}
+.mode svg{width:13px;height:13px}
+/* compact timetable */
+details.tt{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--s2) var(--s5)}
+details.tt summary{cursor:pointer;font-weight:700;font-size:var(--t-sm);color:var(--ink-2);padding:var(--s2) 0;list-style:none;display:flex;justify-content:space-between}
+details.tt summary::-webkit-details-marker{display:none}
+details.tt summary::after{content:"접기";color:var(--ink-3);font-weight:500}
+details.tt:not([open]) summary::after{content:"펼치기"}
+.tt ul{list-style:none;margin:0;padding:0}
+.tt li{display:grid;grid-template-columns:48px 1fr;gap:var(--s3);padding:9px 0;border-top:1px solid var(--line);font-size:var(--t-sm)}
+.tt li .t{font-weight:700;color:var(--ink-3)}
+.tt li.key .t{color:var(--c)}
+.tt li .w b{font-weight:700;color:var(--ink)}
+.tt li .w{color:var(--ink-2)}
+.tt li .w small{display:block;color:var(--ink-3);font-size:var(--t-xs)}
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(25,31,40,.55);display:none;align-items:center;justify-content:center;padding:var(--s4)}
+.modal.on{display:flex}
+.sheet{background:#fff;border-radius:var(--r-lg);max-width:760px;width:100%;max-height:100%;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.sheet img{display:block;width:100%;height:auto;max-height:56vh;object-fit:cover;object-position:center}
+.sheet .sb{padding:var(--s4) var(--s5) var(--s5);display:grid;gap:var(--s2)}
+.sheet .ab{font-size:var(--t-xl);font-weight:800}
+.sheet .row2{display:flex;gap:var(--s2);flex-wrap:wrap;align-items:center;justify-content:space-between}
+.sheet .nav{display:flex;gap:var(--s2)}
+.ib{all:unset;cursor:pointer;width:40px;height:40px;border-radius:12px;background:var(--fill);display:grid;place-items:center;color:var(--ink-2)}
+.ib:hover{background:var(--line)}
+.ib svg{width:18px;height:18px}
+
+/* overview map (legacy) */
+.mapsvg{width:100%;height:auto;display:block;border-radius:var(--r-md);background:var(--fill)}
+#mapOsaka{max-height:560px}
+.legend{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);font-size:var(--t-sm);color:var(--ink-2);margin:var(--s3) 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:16px;height:4px;border-radius:2px;background:var(--c)}
+.pl{list-style:none;margin:0;padding:0}
+.pl li{display:flex;gap:var(--s3);align-items:center;padding:var(--s2) 0;font-size:var(--t-sm)}
+.pl li + li{border-top:1px solid var(--line)}
+.pl .n{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;background:var(--c)}
+.pl a{font-weight:700}
+.pl .h{margin-left:auto;color:var(--ink-3);font-size:var(--t-xs);text-align:right}
+.mapcard h3{font-size:var(--t-lg);font-weight:800}
+.mapcard .sub{font-size:var(--t-sm);color:var(--ink-3);margin:2px 0 var(--s3)}
+
+/* risks */
+.st{flex:none;font-size:var(--t-xs);font-weight:700;padding:3px 9px;border-radius:var(--r-pill)}
+.st.ok{background:var(--d2w);color:var(--ok)}
+.st.warn{background:var(--d3w);color:var(--warn)}
+.st.fix{background:var(--brand-weak);color:var(--brand)}
+.row.top{align-items:flex-start}
+.row .t3{font-size:var(--t-sm);color:var(--ink);margin-top:2px}
+
+/* checklist */
+.ck label{display:flex;gap:var(--s3);align-items:center;padding:var(--s3) 0;cursor:pointer}
+.ck li + li label{border-top:1px solid var(--line)}
+.ck ul{list-style:none;margin:0;padding:0}
+.ck input{appearance:none;flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;margin:0}
+.ck input:checked{background:var(--brand);border-color:var(--brand)}
+.ck input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.ck input:checked + span{color:var(--ink-3);text-decoration:line-through}
+
+/* offline */
+.steps{margin:0;padding-left:20px;color:var(--ink-2);font-size:var(--t-sm)}
+.steps li + li{margin-top:var(--s1)}
+.steps b{color:var(--ink)}
+.offline{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s3);margin-top:var(--s4)}
+.offline figure{margin:0;border-radius:var(--r-md);overflow:hidden;background:var(--fill);border:1px solid var(--line)}
+.offline .thumb{display:block;height:260px;overflow:hidden}
+.offline img{display:block;width:100%;height:auto}
+.offline figcaption{font-size:var(--t-xs);font-weight:700;padding:var(--s2) var(--s3);color:var(--ink-2);background:#fff;border-top:1px solid var(--line)}
+
+footer{padding:var(--s8) 0 var(--s10);color:var(--ink-3);font-size:var(--t-sm)}
+footer ul{margin:var(--s2) 0 0;padding-left:18px}
+footer a{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px}
+@media (max-width:480px){
+  .hero h1{font-size:26px}
+  .tl{padding:var(--s1) var(--s4)}
+  .tl li{grid-template-columns:42px 1fr;}
+  .tl .go{grid-column:2;justify-self:start}
+}
+.gm{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.gm a{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#1a73e8;background:#e8f0fe;padding:4px 10px 4px 8px;border-radius:999px;text-decoration:none;line-height:1.4}
+.gm a b{font-weight:800;color:#174ea6}
+.gm a svg{width:13px;height:13px;flex:none}
+.gm a:active{background:#d2e3fc}
+.calhint{display:flex;align-items:center;gap:8px;background:#fff4f0;color:var(--ink-2);font-size:var(--t-xs);padding:9px 12px;margin:0 0 var(--s3);border-left:3px solid var(--brand)}
+.calhint svg{width:18px;height:18px;flex:none;color:var(--brand)}
+.calhint b{color:var(--ink);font-weight:800}
+.calhint .ex{display:inline-block;margin-left:2px;font-weight:800;color:var(--brand)}
+.cal .ev{cursor:pointer;transition:filter .12s}
+.cal .ev:hover,.cal .ev:active{filter:brightness(.94)}
+.cal .ev .go{position:absolute;right:4px;bottom:1px;font-size:15px;font-weight:800;line-height:1;color:var(--c);opacity:.85}
+.cal .ev.minor .go{color:#9aa3ad}
+.cal .ev.short .go{bottom:auto;top:50%;transform:translateY(-52%)}
+.cal .ev.short{padding-right:16px}
+.cal .ev.short .chk{right:16px}
+.cal .ev:not(.short) .chk{top:3px}
+li.flash{animation:flash 1.8s ease-out}
+@keyframes flash{0%,35%{background:color-mix(in srgb,var(--brand) 16%,#fff);box-shadow:0 0 0 2px var(--brand)}100%{background:transparent;box-shadow:0 0 0 2px transparent}}
+.tabs a{transition:background .15s,color .15s,border-color .15s,box-shadow .15s}
+.tabs a.on{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:800;box-shadow:0 3px 10px color-mix(in srgb,var(--brand) 35%,transparent)}
+.tabs a[data-c].on{background:var(--c);border-color:var(--c);box-shadow:0 3px 10px color-mix(in srgb,var(--c) 35%,transparent)}
+.tabs a[data-c].on::before{background:#fff}
+.nowfab{gap:5px;position:fixed;right:max(12px,env(safe-area-inset-right));bottom:calc(50px + env(safe-area-inset-bottom));z-index:60;display:flex;align-items:center;gap:7px;height:34px;max-width:min(52vw,220px);padding:0 8px 0 10px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);border:1px solid var(--line);border-radius:999px;overflow:hidden;box-sizing:border-box;box-shadow:0 6px 18px rgba(25,31,40,.14);font:inherit;font-size:12px;line-height:1;cursor:pointer;transition:transform .25s ease,opacity .25s ease}
+.nowfab[hidden]{display:none}
+.nowfab.away{transform:translateY(calc(100% + 24px));opacity:0;pointer-events:none}
+.nowfab .dot{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+.nowfab .dot.live{animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.nowfab .lb{font-size:11px;font-weight:800;color:var(--c);flex:none}
+.nowfab .tm{font-weight:800;flex:none;font-variant-numeric:tabular-nums}
+.nowfab .nm{flex:0 1 auto;font-weight:600;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;padding:2px 0}
+.nowfab .ar{font-size:15px;font-weight:800;color:var(--ink-3);flex:none;margin-left:1px}
+.nowfab:active{transform:scale(.97)}
+.pagefoot-space{height:calc(54px + env(safe-area-inset-bottom))}
+#dday[role=button]{text-decoration:none}
+#dday[role=button]::after{content:" ›";font-weight:800}
+.appbar{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s}
+.appbar > .wrap{transition:opacity .2s}
+.appbar.compact{transform:translateY(calc(-56px - env(safe-area-inset-top)));box-shadow:0 4px 14px rgba(25,31,40,.08)}
+.appbar.compact > .wrap{opacity:0;pointer-events:none}
+.appbar.compact .tabs{border-top-color:transparent}
+.wxfab{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));z-index:61;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.wxfab[hidden]{display:none}
+.wxpill{display:flex;align-items:center;gap:4px;height:30px;padding:0 10px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;box-shadow:0 4px 14px rgba(25,31,40,.12);font:inherit;font-size:12px;line-height:1;color:var(--ink);cursor:pointer;white-space:nowrap}
+.wxpill .ic{font-size:14px}
+.wxpill .ct{font-weight:700;color:var(--ink-2);margin-right:2px}
+.wxpill b{font-weight:800}
+.wxpill .lo{color:var(--ink-3)}
+.wxpill .pp{margin-left:4px;font-weight:700;color:#1a73e8}
+.wxpill.rain{border-color:#9ec5fb;background:#eef5ff}
+.wxpanel{display:none;width:min(300px,calc(100vw - 24px));background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(25,31,40,.18);padding:12px 12px 10px;font-size:12px}
+.wxfab.open .wxpanel{display:block}
+.wxpanel .wh{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;font-size:13px}
+.wxpanel .wx-x{border:0;background:var(--fill);width:24px;height:24px;border-radius:50%;font-size:11px;color:var(--ink-2);cursor:pointer}
+.wxpanel .wr{display:grid;grid-template-columns:30px 38px 20px 1fr auto auto;align-items:center;gap:4px;padding:6px 4px;border-top:1px solid var(--line)}
+.wxpanel .wr.on{background:var(--brand-weak);border-radius:8px;border-top-color:transparent}
+.wxpanel .wd{font-weight:800;color:var(--ink-2)}
+.wxpanel .wc{font-weight:700}
+.wxpanel .ww{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wxpanel .wt b{font-weight:800}
+.wxpanel .wt{color:var(--ink-3)}
+.wxpanel .wp{color:#1a73e8;font-weight:700;min-width:40px;text-align:right}
+.wxpanel .wp.hi{color:#fff;background:#1a73e8;border-radius:999px;padding:2px 6px}
+.wxpanel .wn{margin-top:8px;color:var(--ink-3);font-size:11px;line-height:1.5}
+.wxpanel .wl{display:flex;gap:6px;margin-top:8px}
+.wxpanel .wl a{flex:1;text-align:center;padding:7px 0;border-radius:10px;background:#e8f0fe;color:#1a73e8;font-weight:700;text-decoration:none}
+.pagefoot-space{height:calc(96px + env(safe-area-inset-bottom))}
+.wxpill .nw{font-size:10px;font-weight:800;color:var(--brand);margin-right:1px}
+.wxpanel .wnow{display:flex;align-items:baseline;gap:6px;background:#f2f7ff;border-radius:10px;padding:8px 10px;margin-bottom:4px}
+.wxpanel .wnow b{font-size:20px;font-weight:800}
+.wxpanel .wnow .wa{color:var(--ink-3);font-size:11px;flex:1}
+.wxpanel .wnow a{color:#1a73e8;font-weight:700;text-decoration:none;font-size:11px}
+.cal .ev{z-index:1}
+.cal .nowl{position:absolute;left:0;right:0;height:0;border-top:1px dashed rgba(229,57,53,.45);z-index:0;pointer-events:none}
+.cal .nowl.on{border-top:2px solid #e53935;z-index:4;box-shadow:0 0 0 1px rgba(255,255,255,.7)}
+.cal .nowl.on::before{content:"";position:absolute;left:-5px;top:-6px;width:10px;height:10px;border-radius:50%;background:#e53935;box-shadow:0 0 0 2px #fff}
+.cal .axis .tk .nowtk{right:3px;z-index:5;color:#fff;background:#e53935;padding:2px 4px;font-size:10px;font-weight:800;line-height:1.1}
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <div class="wrap">
+    <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M5 10h14M7 6v14M17 6v14"/></svg></span>
+    <span class="ttl">오사카·교토 3박 4일</span>
+    <span class="dday num" id="dday">11.19 – 11.22</span>
+  </div>
+  <nav class="tabs" aria-label="바로가기">
+    <div class="wrap">
+      <a href="#summary">요약</a>
+      <a href="#calendar">캘린더</a>
+      <a href="#map">전체 지도</a>
+      <a href="#day1" data-c style="--c:var(--d1)">1일차 목</a>
+      <a href="#day2" data-c style="--c:var(--d2)">2일차 금</a>
+      <a href="#day3" data-c style="--c:var(--d3)">3일차 토</a>
+      <a href="#day4" data-c style="--c:var(--d4)">4일차 일</a>
+      <a href="#events">행사·리스크</a>
+      <a href="#prep">준비물</a>
+      <a href="#offline">오프라인 저장</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="main">
+      <div class="eyebrow">여행 실행 계획</div>
+      <h1>교토 카페 투어부터<br>오사카 일루미네이션까지</h1>
+      <div class="period num">2026.11.19 목 – 11.22 일 · 3박 4일</div>
+      <div class="route"><span>간사이공항</span><span>교토 1박</span><span>오사카 난바 2박</span><span>신오사카 → 귀국</span></div>
+    </div>
+    <div class="side">
+      <div class="card">
+        <div class="label">항공 · 진에어</div>
+        <div class="rows">
+          <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-5-3-3-6 1-5-6H6l3 7-5 1-2-2z"/></svg></span><div class="tx"><div class="t1">가는 편</div><div class="t2">인천 T2 → 간사이 T1 · 11.19 목</div></div><div class="rt num">07:50<small>09:35 도착</small></div></div>
+          <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16L2 11l3-3 6 1 5-6h2l-3 7 5 1 2-2z"/></svg></span><div class="tx"><div class="t1">오는 편</div><div class="t2">간사이 T1 → 인천 T2 · 11.22 일</div></div><div class="rt num">14:50<small>16:50 도착</small></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">숙소</div>
+        <div class="rows">
+          <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V8l9-5 9 5v12M9 20v-6h6v6"/></svg></span><div class="tx"><div class="t1">리치몬드 호텔 프리미어 교토 시조</div><div class="t2">시조역 · 11.19 – 20</div></div><div class="rt">1박</div></div>
+          <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V8l9-5 9 5v12M9 20v-6h6v6"/></svg></span><div class="tx"><div class="t1">크로스호텔 오사카</div><div class="t2">난바·도톤보리 · 11.20 – 22</div></div><div class="rt">2박</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="summary">
+    <div class="sh"><h2>일정 한눈에</h2><p>카드를 누르면 그날 타임테이블로 이동합니다</p></div>
+    <div class="sum" id="summaryCards"></div>
+  </section>
+
+  <section id="calendar">
+    <div class="sh"><h2>캘린더로 보기</h2><p>4일 일정을 시간 순서로 한눈에</p></div>
+    <div class="calhint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.7 15a1.5 1.5 0 0 1 2.4-1.8L9 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>일정 블록을 누르면</b> 아래 상세 시간표의 해당 일정으로 이동합니다 <span class="ex">›</span></span></div><div class="callegend"><span><i class="n"></i>일반 일정</span><span><i class="r"></i>확인 필요 (💴 현금 · ⏰ 마감 임박 · ⚠ 대기·흡연)</span><span><i class="m"></i>이동·숙소</span></div>
+    <div class="calwrap"><div class="cal" id="cal"></div></div>
+  </section>
+
+  <section id="map">
+    <details class="fold" id="ovFold">
+      <summary><span class="ttl2">여행 전체 경로 지도<small>교토·오사카 방문지를 한 장씩 · 누르면 지도가 펼쳐집니다</small></span><span class="mapbtn"><span class="o">지도 펼치기</span><span class="c">지도 접기</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+      <div class="body"><div class="ov">
+        <div class="mapcard"><h3>교토</h3><div class="sub">1일차 시내 · 2일차 아라시야마</div><div class="ovmap" id="ovKyoto"></div>
+          <div class="legend"><span style="--c:var(--d1)"><i></i>1일차</span><span style="--c:var(--d2)"><i></i>2일차</span></div></div>
+        <div class="mapcard"><h3>오사카</h3><div class="sub">점선은 미도스지 일루미네이션 구간</div><div class="ovmap" id="ovOsaka"></div>
+          <div class="legend"><span style="--c:var(--d2)"><i></i>2일차</span><span style="--c:var(--d3)"><i></i>3일차</span></div></div>
+      </div></div>
+    </details>
+  </section>
+
+
+  <div id="days"></div>
+
+
+  <section id="events">
+    <div class="sh"><h2>시즌 행사</h2><p>여행 기간에 모두 진행 중인 것을 확인했습니다</p></div>
+    <div class="card"><div class="rows">
+      <div class="row top"><span class="ico" style="background:var(--d3w);color:var(--d3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></span><div class="tx"><div class="t1">미도스지 일루미네이션 2026</div><div class="t2 num">11.3 – 12.31 · 17시경 – 25시 · 한신 앞 ~ 난바 니시구치, 약 4km</div></div><span class="st ok">3일차 우메다→난바 도보</span></div>
+      <div class="row top"><span class="ico" style="background:var(--d3w);color:var(--d3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l4 7H8zM12 7l5 8H7zM12 13l6 8H6zM12 21v1"/></svg></span><div class="tx"><div class="t1">한큐 우메다 크리스마스마켓 2026</div><div class="t2 num">11.18 – 12.25 · 9층 행사장·축제광장 · 쇼 11.19부터 11–19시 매시 정각</div></div><span class="st ok">3일차 12:00 쇼</span></div>
+      <div class="row top"><span class="ico" style="background:var(--d3w);color:var(--d3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l4 7H8zM12 7l5 8H7zM12 13l6 8H6zM12 21v1"/></svg></span><div class="tx"><div class="t1">GRAND WISH CHRISTMAS 2026</div><div class="t2 num">11.4 – 12.25 · 그랜드 프론트 북관 1층 · 트리 쇼 평일 16시–, 주말 15–24시, 15분 간격</div></div><span class="st ok">3일차 16:00</span></div>
+      <div class="row top"><span class="ico" style="background:var(--d3w);color:var(--d3)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></span><div class="tx"><div class="t1">UMEDA MEETS HEART 2026</div><div class="t2 num">11.21 – 12.25 · 그랜드 프론트 특별 이벤트 11.21·22</div></div><span class="st ok">3일차 보너스</span></div>
+    </div></div>
+
+    <div class="sh" style="margin-top:var(--s6)"><h2>확인한 리스크와 대응</h2></div>
+    <div class="card"><div class="rows" id="risks"></div></div>
+  </section>
+
+  <section id="prep">
+    <div class="sh"><h2>준비물과 교통</h2><p>체크 표시는 이 브라우저에만 저장됩니다</p></div>
+    <div class="grid2">
+      <div class="card ck"><div class="label">체크리스트</div><ul id="checklist"></ul></div>
+      <div class="card" style="align-self:start"><div class="label">주요 교통</div><div class="rows">
+        <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/></svg></span><div class="tx"><div class="t1">JR 특급 하루카</div><div class="t2 num">간사이공항 → 교토 · 자유석 3,060엔 / 지정석 3,590엔</div></div><div class="rt num">약 75–80분</div></div>
+        <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/></svg></span><div class="tx"><div class="t1">한큐 교토선</div><div class="t2">가라스마 → 오사카우메다</div></div><div class="rt num">약 45분</div></div>
+        <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/></svg></span><div class="tx"><div class="t1">미도스지선</div><div class="t2">우메다 ↔ 난바</div></div><div class="rt num">약 10분</div></div>
+        <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/></svg></span><div class="tx"><div class="t1">JR 특급 하루카</div><div class="t2 num">신오사카 → 간사이공항 · 자유석 2,540엔 / 지정석 3,070엔</div></div><div class="rt num">약 50분</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="offline">
+    <div class="sh"><h2>오프라인 저장용 이미지</h2><p>데이터가 없어도 볼 수 있도록 일자별로 한 장씩 만들었습니다</p></div>
+    <div class="card">
+      <ol class="steps">
+        <li><b>휴대폰:</b> 이미지를 눌러 연 뒤 길게 누르고 <b>이미지 저장</b>(또는 <b>사진에 추가</b>)을 고르세요.</li>
+        <li><b>PC:</b> 이미지를 눌러 연 뒤 마우스 오른쪽 버튼으로 저장하세요.</li>
+        <li><b>구글 지도 앱:</b> 여행 전에 교토·오사카 지역을 <b>오프라인 지도</b>로 받아 두면 현장에서 데이터 없이도 길을 찾을 수 있습니다.</li>
+      </ol>
+      <div class="offline" id="offlineGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>가게 영업시간과 휴무일은 2026.11.16에 구글 지도에서 확인한 정보입니다. 출발 전에 한 번 더 확인하세요. 지도 이미지 © Google.</div>
+    <div style="margin-top:var(--s3);font-weight:700;color:var(--ink-2)">출처</div>
+    <ul>
+      <li><a href="https://www.city.osaka.lg.jp/hodoshiryo/keizaisenryaku/0000678946.html">오사카시 보도자료 · 오사카·빛의 향연 2026</a></li>
+      <li><a href="https://bestcalendar.jp/press/163610">한큐 우메다 크리스마스마켓 2026</a></li>
+      <li><a href="https://bestcalendar.jp/press/163892">GRAND WISH CHRISTMAS 2026 트리 라이팅쇼</a></li>
+      <li><a href="https://bestcalendar.jp/press/162030">그랜드 프론트 크리스마스 2026 · UMEDA MEETS HEART</a></li>
+      <li><a href="https://retty.me/restaurant/100001307474/">Retty · WEEKENDERS COFFEE 富小路</a></li>
+      <li><a href="https://jr-group.jp/haruka-ryokin/">JR 하루카 요금 안내</a></li>
+      <li><a href="https://rurubu.jp/andmore/spot/80026613">るるぶ · 스마트커피 영업정보</a></li>
+      <li><a href="https://osaka-info.jp/spot/sennichimae-doguyasuji-shopping-street/">OSAKA-INFO · 센니치마에 도구야스지</a></li>
+      <li><a href="https://tabi-mag.jp/kiyomizu-autumn/">기요미즈데라 가을 야간 특별관람 2025</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const R = (...qs) => 'https://www.google.com/maps/dir/' + qs.map(encodeURIComponent).join('/');
+const KIX = 'Kansai International Airport Terminal 1';
+
+const BASE = {"kyoto": {"z": 13, "ox": 1838876.7842133334, "oy": 830442.9123148619, "s": 2, "w": 1520, "h": 760}, "osaka": {"z": 14, "ox": 3675667.945955556, "oy": 1665443.7056391241, "s": 2, "w": 840, "h": 1814}};
+const P = {
+  RH:{name:'리치몬드 호텔 프리미어 교토 시조', q:'Richmond Hotel Premier Kyoto Shijo', id:'ChIJuyvS-wQJAWARBXJVVDC6Kb0', lat:35.00415, lng:135.75436},
+  DT:{name:'동츠키 (카이센동)', q:'Dontsuki Kyoto', id:'ChIJJeGnbbAJAWAR2UXz02rKYf8', lat:35.00740, lng:135.75869},
+  KU:{name:'카페키친 쿠룬 (오므라이스)', q:'カフェキッチン くるん 京都', id:'ChIJmeiBwAcJAWARhnvD-mC0xcg', lat:35.00474, lng:135.76318},
+  WE:{name:'위켄더스커피 신마치', q:'WEEKENDERS COFFEE SHINMACHI', lat:35.00611, lng:135.75680},
+  KI:{name:'기요미즈데라', q:'Kiyomizu-dera', id:'ChIJB_vchdMIAWARujTEUIZlr2I', lat:34.99467, lng:135.78466},
+  SM:{name:'스마트커피', q:'Smart Coffee Kyoto', id:'ChIJFY1ePZIIAWARwnZmEXSRqz4', lat:35.00945, lng:135.76708},
+  UQ:{name:'유니클로 교토 가와라마치점', q:'UNIQLO Kyoto Kawaramachi', lat:35.00786, lng:135.76876},
+  SO:{name:'SOU・SOU 타비', q:'SOU・SOU Tabi', id:'ChIJV8w3S5QIAWARlBv-_FgTTws', lat:35.00438, lng:135.76814},
+  KT:{name:'교토타워', q:'Nidec Kyoto Tower', id:'ChIJd9pWqK8IAWAR1L-X_-4WKew', lat:34.98752, lng:135.75925},
+  TM:{name:'토미센 (초밥)', q:'Tomisen Kyoto', id:'ChIJNb3fL6YIAWARiFX5y_FShBw', lat:34.98786, lng:135.75497},
+  IS:{name:'교토 이쎈 교토역점 (푸딩)', q:'Wagyu Burger & Dessert Kyoto Issen Kyoto Station', lat:34.98912, lng:135.76085},
+  YM:{name:'커피샵 야마모토', q:'Coffee Shop Yamamoto', id:'ChIJEcTVwvipAWARjF2hkJRcHFk', lat:35.02001, lng:135.67837},
+  BB:{name:'아라시야마 대나무숲', q:'Arashiyama Bamboo Forest', id:'ChIJrYtcv-urAWAR3XzWvXv8n_s', lat:35.01682, lng:135.67130},
+  TG:{name:'도게츠교', q:'Togetsukyo Bridge', id:'ChIJd2mRAFMHAWARPSiWJOj4FOw', lat:35.01288, lng:135.67777},
+  KK:{name:'티룸 키키 아라시야마 본점', q:'TEA ROOM KIKI', id:'ChIJGSbcVzGpAWARorIPlY9n7ZU', lat:35.01664, lng:135.68069},
+  MO:{name:'momoharu', q:'momoharu Kyoto', id:'ChIJVVVaFYwIAWARBA20q0h4oEM', lat:35.01417, lng:135.76746},
+  CH:{name:'크로스호텔 오사카', q:'Cross Hotel Osaka', id:'ChIJA0zO7hPnAGARHooEfgZ_MsY', lat:34.66971, lng:135.50076},
+  KO:{name:'규슈라멘 키오 (토마토라멘)', q:'Kyushu Ramen Kio Dotonbori', id:'ChIJXc7qsxPnAGARhKZju4Wh4Xg', lat:34.66862, lng:135.49944},
+  PA:{name:'파르코 신사이바시 · 하브스(3층)', q:'HARBS Shinsaibashi PARCO', id:'ChIJd8euxxDnAGARta9AXzW1W_0', lat:34.67385, lng:135.50096},
+  DG:{name:'그릇매장 (센니치마에 도구야스지)', q:'Sennichimae Doguyasuji', id:'ChIJfQfezmvnAGARy4Sd3VGFy_A', lat:34.66401, lng:135.50351},
+  YO:{name:'야키니쿠 사가규 요시야', q:'Saga Gyu Yoshiya', id:'ChIJ5cv4yxXnAGAR_5v6vekow8I', lat:34.67137, lng:135.50426},
+  MY:{name:'마루요시 (기즈 시장)', q:'Maruyoshi Sushi Osaka', id:'ChIJf91t9mXnAGARmFL6cIcoZWE', lat:34.65689, lng:135.49966},
+  DR:{name:'킷사 도레미', q:'喫茶ドレミ', id:'ChIJL5hZd2DnAGARqxrhnYYDBCM', lat:34.65249, lng:135.50609},
+  HK:{name:'한큐 우메다 본점 · 잇신도(B1)', q:'Hankyu Umeda Main Store', id:'ChIJ67mcWJLmAGARrUf0FlFtm7w', lat:34.70282, lng:135.49853},
+  BN:{name:'히츠마부시 빈쵸 (그랜드 프론트 남관 7층)', q:'Hitsumabushi Bincho Grand Front Osaka', id:'ChIJw0LI_YvmAGARPC6hcbi2y0E', lat:34.70396, lng:135.49469},
+  LU:{name:'루쿠아 오사카', q:'LUCUA Osaka', id:'ChIJ_W6qxY3mAGARSV21ZIJAEmM', lat:34.70289, lng:135.49532},
+  GF:{name:'그랜드 프론트 오사카 북관', q:'Grand Front Osaka North Building', id:'ChIJ81sSB4_mAGARZDxTjKS5KKc', lat:34.70590, lng:135.49442},
+  HD:{name:'하나다코 (타코야키)', q:'Hanadako Umeda', id:'ChIJ_5Ip7-zmAGAReRZN8gzci50', lat:34.70316, lng:135.49798},
+  KTS:{name:'키타스시 혼텐', q:'Kitasushi honten', id:'ChIJy7DivMDmAGARQ1k_XOuA2lM', lat:34.69952, lng:135.50152},
+  OS:{name:'오소라카페 (신오사카)', q:'OSORACAFE', id:'ChIJq6onHyXkAGARVAN2ExLv_ZM', lat:34.72637, lng:135.49901},
+  KIX:{name:'간사이공항 T1', q:'Kansai International Airport Terminal 1', lat:34.4320, lng:135.2304},
+};
+const SHORT = {RH:'교토 호텔',DT:'동츠키',KU:'쿠룬',WE:'위켄더스',KI:'기요미즈데라',SM:'스마트커피',UQ:'유니클로',SO:'SOU・SOU',KT:'교토타워',TM:'토미센',IS:'이쎈',YM:'야마모토',BB:'대나무숲',TG:'도게츠교',KK:'티룸 키키',MO:'momoharu',CH:'오사카 호텔',KO:'키오 라멘',PA:'파르코',DG:'그릇매장',YO:'요시야',MY:'마루요시',DR:'도레미',HK:'한큐 우메다',BN:'빈쵸',LU:'루쿠아',GF:'그랜드 프론트',HD:'하나다코',KTS:'키타스시',OS:'오소라카페',KIX:'간사이공항 T1'};
+
+const IC = {
+  walk:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M10 21l2-6 3 3v3M7 12l3-4 4 1 3 3M10 8l-1 6"/></svg>',
+  train:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="13" rx="3"/><path d="M6 10h12M9 20l-1.5 1.5M15 20l1.5 1.5"/></svg>',
+  bus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 10h16M7 20v-3M17 20v-3"/></svg>',
+};
+const MODE = {walk:'도보', train:'전철', bus:'버스'};
+const CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+const MAPICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transform:none"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>';
+const G = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.q) + (p.id ? '&query_place_id=' + p.id : '');
+const DIR = (a,b,mode) => 'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(P[a].q)+(P[a].id?'&origin_place_id='+P[a].id:'')+'&destination='+encodeURIComponent(P[b].q)+(P[b].id?'&destination_place_id='+P[b].id:'')+'&travelmode='+(mode==='walk'?'walking':'transit');
+
+// [시각, 내용, 메모, 강조]
+const DAYS = [
+ {id:'day1', n:1, tag:'1일차 · 11.19 목', title:'교토 시내 하루', blurb:'쿠룬 오므라이스 → 위켄더스 라떼 → 기요미즈데라 노을 → 스마트커피 → 가와라마치 쇼핑 → 교토타워 → 토미센 초밥 → 이쎈 푸딩', stay:'숙박 · 교토 시조',
+  maps:[{base:'kyoto', seq:['RH','KU','WE','KI','SM','UQ','SO','KT','TM','IS','RH']}],
+  legs:[['KIX','RH','train','약 1시간 30분','JR 하루카 → 교토역 → 지하철 가라스마선 시조역'],['RH','KU','walk','14분 · 1km','니시키시장 방향 · 빌딩 2층'],['KU','WE','walk','11분 · 800m',''],['WE','KI','bus','약 30분','시내버스 207번 · 택시 약 15분'],['KI','SM','train','약 35분','게이한 기온시조 → 산조 · 택시 약 15분'],['SM','UQ','walk','6분 · 400m','데라마치 상점가'],['UQ','SO','walk','8분 · 550m',''],['SO','KT','train','약 15분','한큐 교토가와라마치 → 가라스마 → 가라스마선 교토'],['KT','TM','walk','6분 · 400m',''],['TM','IS','walk','10분 · 700m',''],['IS','RH','train','약 18분','가라스마선 교토 → 시조']],
+  items:[
+   ['07:50','인천 T2 출발 → 09:35 간사이공항 T1','진에어 · 05:50까지 공항 도착',1],
+   ['10:45','JR 하루카로 교토','입국 후 약 1시간 · 하루카 약 75–80분'],
+   ['12:25','<b>교토 호텔</b> 짐 보관','체크인은 오후'],
+   ['12:40','<b>카페키친 쿠룬</b> 오므라이스·나폴리탄','11–16시 · 화·수 휴무 · 현금 · 대기 약 30분',1],
+   ['14:00','<b>위켄더스커피</b> 따뜻한 라떼','7:30–17시 · 수 휴무',1],
+   ['15:00','<b>기요미즈데라</b> 해 질 녘 전망','18시 폐문 · 일몰 약 16:45',1],
+   ['17:30','<b>스마트커피</b> 프렌치토스트','8–19시',1],
+   ['18:20','<b>유니클로 가와라마치</b> → <b>SOU・SOU 타비</b>','SOU・SOU 12–20시 · 수 휴무',1],
+   ['19:45','<b>교토타워</b> 야경','10–21시',1],
+   ['20:30','<b>토미센</b> 사시미·초밥','17–22시 · 일 휴무',1],
+   ['21:40','<b>교토 이쎈</b> 푸딩','8:30–23시',1],
+   ['22:20','호텔 체크인',''],
+  ]},
+ {id:'day2', n:2, tag:'2일차 · 11.20 금', title:'아라시야마 → 오사카 미나미', blurb:'야마모토 과일샌드 → 대나무숲·도게츠교 → 티룸 키키 → momoharu → 키오 토마토라멘 → 파르코·하브스 → 그릇매장 → 요시야 야키니쿠', stay:'숙박 · 오사카 난바',
+  maps:[{base:'kyoto', seq:['RH','YM','BB','TG','KK','MO','RH']},{base:'osaka', seq:['CH','KO','PA','DG','YO','CH']}],
+  legs:[['RH','YM','train','약 40분','란덴 시조오미야 → 아라시야마 방면'],['YM','BB','walk','13분 · 950m',''],['BB','TG','walk','13분 · 1km',''],['TG','KK','walk','10분 · 700m',''],['KK','MO','train','약 34분','JR 사가아라시야마 → 니조 → 도자이선'],['MO','RH','bus','약 18분','버스 · 걸으면 32분'],['RH','CH','train','약 1시간 10분','한큐 교토선 → 우메다 → 미도스지선 난바'],['CH','KO','walk','3분 · 190m',''],['KO','PA','walk','11분 · 700m',''],['PA','DG','walk','19분 · 1.3km','신사이바시스지 상점가 따라 남쪽'],['DG','YO','walk','12분 · 850m',''],['YO','CH','walk','8분 · 550m','']],
+  items:[
+   ['07:00','체크아웃, 짐은 프런트 보관',''],
+   ['07:50','<b>커피샵 야마모토</b> 과일샌드위치·아이스커피','7–17:30 · 목 휴무 · 현금',1],
+   ['08:45','<b>대나무숲</b> → <b>도게츠교</b>','이른 시간이 한산',1],
+   ['09:50','<b>티룸 키키</b> 밀크티 아이스크림·아쌈','9–17시',1],
+   ['11:20','<b>momoharu</b> 타마고산도·프렌치토스트','금 11–17시 · 현금',1],
+   ['12:40','교토 호텔에서 짐 찾아 오사카로',''],
+   ['14:10','<b>크로스호텔</b> 체크인·짐',''],
+   ['14:20','<b>키오</b> 매운 (치즈)토마토라멘 2단계','10–02시',1],
+   ['15:10','<b>파르코 신사이바시</b> 쇼핑 + <b>하브스</b> 과일크레페','10–20시',1],
+   ['17:00','<b>그릇매장</b> (도구야스지)','가게별 대체로 10–18시',1],
+   ['18:15','<b>사가규 요시야</b> 꽃등심·하라미·육회·우설','18–02시',1],
+   ['20:30','호텔 복귀',''],
+  ]},
+ {id:'day3', n:3, tag:'3일차 · 11.21 토', title:'시장 아침 → 우메다 → 일루미 산책', blurb:'마루요시 카이센동 → 도레미 푸딩 → 한큐 크리스마스마켓·잇신도 → 빈쵸 장어덮밥 → 루쿠아 → 그랜드 프론트 → 하나다코 → 키타스시 → 미도스지 걸어서 복귀', stay:'숙박 · 오사카 난바',
+  maps:[{base:'osaka', seq:['CH','MY','DR','HK','BN','LU','GF','HD','KTS','CH']}],
+  legs:[['CH','MY','walk','23분 · 1.6km','지하철 1정거장(다이코쿠초)도 가능'],['MY','DR','walk','15분 · 1km',''],['DR','HK','train','약 25분','미도스지선 도부쓰엔마에 → 우메다'],['HK','BN','walk','9분 · 500m','그랜드 프론트 남관 7층'],['BN','LU','walk','8분 · 220m',''],['LU','GF','walk','9분 · 450m',''],['GF','HD','walk','9분 · 600m','신우메다 식당가 1층'],['HD','KTS','walk','10분 · 700m',''],['KTS','CH','walk','49분 · 3.5km','미도스지 일루미네이션 따라 남쪽으로']],
+  items:[
+   ['07:30','호텔 출발',''],
+   ['08:00','<b>마루요시</b> 카이센동 (참치·연어알·우니)','6–13시 · 일 휴무',1],
+   ['10:00','<b>킷사 도레미</b> 푸딩','10–18시 · 월·화 휴무 · 실내 흡연 허용',1],
+   ['11:20','<b>한큐 우메다</b> 9층 크리스마스마켓, B1 <b>잇신도</b> 과일모찌','12시 정각 트리 쇼 · 10–20시',1],
+   ['12:45','<b>빈쵸</b> 상히츠마부시 5,100엔','점심 11–14:30',1],
+   ['14:00','<b>루쿠아 오사카</b> 쇼핑','10:30–20:30',1],
+   ['15:30','<b>그랜드 프론트</b> 쇼핑·크리스마스 트리','주말 15시부터 15분 간격 쇼',1],
+   ['17:00','<b>하나다코</b> 파타코야끼','10–21:45 · 줄 서는 곳',1],
+   ['17:45','<b>키타스시 혼텐</b> 5번 참치 필수','토 11:30–22시 · 월 휴무',1],
+   ['19:15','<b>미도스지 일루미네이션</b> 걸어서 호텔로','약 50분 · 3.5km',1],
+  ]},
+ {id:'day4', n:4, tag:'4일차 · 11.22 일', title:'신오사카 카페 후 귀국', blurb:'오소라카페 과일토스트 → 신오사카역 하루카 → 간사이공항', stay:'귀국 · 인천 16:50 도착',
+  maps:[],
+  legs:[['CH','OS','train','약 21분','미도스지선 난바 → 니시나카지마미나미가타'],['OS','KIX','train','약 1시간','도보 10분 → 신오사카역 JR 하루카 약 50분']],
+  items:[
+   ['09:20','체크아웃 → 난바역',''],
+   ['10:00','<b>오소라카페</b> 과일토스트','주말 10–16:30 · 캐리어 동반',1],
+   ['11:15','JR 하루카 신오사카 → 간사이공항','약 50분',1],
+   ['12:15','간사이공항 T1 도착, 진에어 수속','출발 2시간 30분 전',1],
+   ['14:50','간사이공항 출발 → 인천 16:50 도착','',1],
+  ]},
+];
+// 문서에 있지만 일정에서 뺀 곳: [이름, 영업정보, 뺀 이유, 가려면, 검색어]
+const SKIPS = {
+ day1:[['동츠키 (카이센동)','카이센동 · 11:30–14시 · 일 휴무','점심을 쿠룬 오므라이스로 바꾸면서 후보로 내렸습니다. 같은 점심 시간대라 둘 다 넣을 수 없습니다.','쿠룬 대기가 길거나 해산물이 당기면 12:40 점심을 동츠키로 바꾸세요. 호텔에서 도보 11분, 위켄더스까지 도보 4분이라 이후 일정은 그대로입니다. 14시 마감이라 13시 전 입장 권장.','丼つき 京都']],
+ day2:[
+  ['무기토 토리','성게알 특제 츠케멘 2,250엔 · 11–15시, 17:30–22시','오사카 도착(14:10)이 점심 마감 직전이라, 늦게까지 여는 키오 토마토라멘으로 잡았습니다.','체크인을 미루고 14:10 짐만 맡긴 뒤 바로 가면 14:30쯤 입장할 수 있습니다(호텔에서 도보 약 12분). 이 경우 키오는 밤 야식(02시까지)으로 옮기세요.','Mugi x Tori Shinsaibashi'],
+  ['우라난바 스시 토후지','초밥 · 평일 17–23:30 · 주말 12–15시 점심도','2일차 저녁은 요시야 야키니쿠, 3일차 저녁은 키타스시라 초밥이 겹칩니다.','고기보다 초밥이 끌리면 요시야 대신 18:15 저녁으로 바꾸세요. 그릇매장에서 도보 약 5분, 호텔까지 도보 약 10분입니다.','Ura Namba Sushi Tofuji'],
+  ['카미나리스시','디럭스 모둠 4,040엔 · 11–23시 · 숙소 근처','같은 이유로 초밥 일정이 겹쳐 뺐습니다.','23시까지 열고 호텔에서 도보 5분이라, 요시야 뒤 21시 전후 가볍게 야식으로 들르기 좋습니다. 좌석이 10석 정도라 대기가 있을 수 있습니다.','Kaminari Sushi Sennichimae'],
+  ['할랄 스시 요사쿠라 난바','테마키스시 · 10:30–14시, 18–22시','점심은 14시에 끝나 오사카 도착 시간과 맞지 않고, 저녁은 다른 초밥집과 겹칩니다.','2일차 저녁 요시야 대신 18:15에 가면 됩니다(호텔에서 도보 약 3분). 손말이 초밥이라 가볍게 먹고 싶을 때 맞습니다.','Halal Sushi Temakizushi Yosakura Namba']],
+ day3:[
+  ['엠뱅크먼트커피','강변 뷰 카페 · 9–18시','우메다 쇼핑 동선에서 떨어진 기타하마 강변에 있고, 일루미네이션 산책을 시작할 때(19시대)는 이미 문을 닫습니다.','루쿠아(14:00) 다음에 들러 15:00–16:00에 머무르세요. 우메다에서 미도스지선 1정거장 요도야바시 후 도보 약 10분입니다. 대신 그랜드 프론트는 16:30부터 짧게 봅니다.','Embankment Coffee Osaka'],
+  ['하브스 다른 지점','다이마루 우메다 6층 · 난바파크스 3층','일정에는 2일차 파르코 신사이바시점(3층)으로 넣었습니다.','파르코점 줄이 길면 3일차 루쿠아 옆 다이마루 우메다점(오사카역 바로 위)에서 14시대에 드세요.','HARBS Daimaru Umeda']],
+ day4:[],
+};
+
+
+// 메모 → 리스크 태그
+const toMin = t => {const [h,m]=t.split(':').map(Number); return h*60+(m||0)};
+function closeMin(m){ // '11:30–14시', '7–17:30', '10–02시'
+  const r=m.match(/(\d{1,2})(?::(\d{2}))?\s*[–-]\s*(\d{1,2})(?::(\d{2}))?시?/); if(!r) return null;
+  let h=+r[3]; const mm=+(r[4]||0); if(h<=4) h+=24; return h*60+mm;
+}
+const PL = {
+ day1:{'07:50':['KIX'],'12:25':['RH'],'12:40':['KU'],'14:00':['WE'],'15:00':['KI'],'17:30':['SM'],'18:20':['UQ','SO'],'19:45':['KT'],'20:30':['TM'],'21:40':['IS'],'22:20':['RH']},
+ day2:{'07:00':['RH'],'07:50':['YM'],'08:45':['BB','TG'],'09:50':['KK'],'11:20':['MO'],'12:40':['RH'],'14:10':['CH'],'14:20':['KO'],'15:10':['PA'],'17:00':['DG'],'18:15':['YO'],'20:30':['CH']},
+ day3:{'07:30':['CH'],'08:00':['MY'],'10:00':['DR'],'11:20':['HK'],'12:45':['BN'],'14:00':['LU'],'15:30':['GF'],'17:00':['HD'],'17:45':['KTS'],'19:15':[{name:'미도스지 일루미네이션',q:'Midosuji Illumination Osaka'}]},
+ day4:{'09:20':['CH'],'10:00':['OS'],'12:15':['KIX'],'14:50':['KIX']}
+};
+const PLACE = k => typeof k==='string' ? P[k] : k;
+const GMAP = k => {const p=PLACE(k); return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.q)+(p.id?'&query_place_id='+p.id:'');};
+const plBtns = (d,t) => { const ks=(PL[d]||{})[t]; if(!ks) return ''; return `<span class="gm">${ks.map(k=>`<a href="${GMAP(k)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg><b>${typeof k==='string'?SHORT[k]:k.name}</b> 구글 지도 <span aria-hidden="true">↗</span></a>`).join('')}</span>`; };
+function tagMeta(t, meta){
+  if(!meta) return {html:'',risk:false};
+  let risk=false; const parts=meta.split(' · ');
+  const out=parts.map(p=>{
+    if(/현금/.test(p)){risk=true; return `<span class="rk cash">💴 ${p}</span>`}
+    if(/휴무/.test(p)) return `<span class="rk off">🚫 ${p}</span>`;
+    if(/흡연|줄|대기|웨이팅|좌석/.test(p)){risk=true; return `<span class="rk warn">⚠ ${p}</span>`}
+    if(/\d[–-]\d/.test(p)){
+      const cm=closeMin(p); let late='';
+      if(cm!==null && cm - toMin(t) <= 75 && cm - toMin(t) > 0){risk=true; late=`<span class="rk late">⏰ 마감 ${Math.floor((cm-toMin(t)))}분 전 도착</span>`}
+      return `<span class="rk hr">🕒 ${p}</span>${late}`;
+    }
+    return `<span class="rk hr">${p}</span>`;
+  });
+  return {html:out.join(''),risk};
+}
+
+const C = n => `--c:var(--d${n});--cw:var(--d${n}w)`;
+
+// D-day + 지금 일정 바로가기
+const NOWQ=(()=>{const q=new URLSearchParams(location.search).get('now'); return q?new Date(q+'+09:00'):null;})();
+function kstNow(){const n=NOWQ||new Date(); const k=new Date(n.toLocaleString('en-US',{timeZone:'Asia/Seoul'})); return {n,k};}
+function findNow(){
+  const {k}=kstNow(); const ymd=[k.getFullYear(),k.getMonth()+1,k.getDate()]; const mins=k.getHours()*60+k.getMinutes();
+  const start=new Date(2026,10,19); const di=Math.round((new Date(ymd[0],ymd[1]-1,ymd[2])-start)/86400000);
+  if(di<0) return {pre:-di};
+  if(di>3) return {post:true};
+  const d=DAYS[di]; let cur=-1; d.items.forEach(([t],i)=>{ if(toMin(t)<=mins) cur=i; });
+  if(di===3 && cur===d.items.length-1 && mins>toMin(d.items[cur][0])+120) return {post:true};
+  if(cur===-1) return {di, mode:'next', i:0};
+  if(cur===d.items.length-1 && di<3 && mins>=toMin(d.items[cur][0])+60) return {di:di+1, mode:'tomorrow', i:0};
+  return {di, mode:'now', i:cur, nx: cur+1<d.items.length?cur+1:null};
+}
+function goItem(di,i){ const d=DAYS[di]; const li=document.getElementById(`${d.id}-i${i}`); if(!li) return; const dt=li.closest('details'); if(dt) dt.open=true;
+  const ab=document.querySelector('.appbar'); const off=(ab?ab.querySelector('.tabs').getBoundingClientRect().height:0)+24;
+  window.scrollTo({top:li.getBoundingClientRect().top+scrollY-off,behavior:'smooth'}); li.classList.remove('flash'); void li.offsetWidth; li.classList.add('flash'); }
+const plain = w => w.replace(/<[^>]+>/g,'');
+
+function ensureSpace(){ if(!document.querySelector('.pagefoot-space')){const d=document.createElement('div');d.className='pagefoot-space';document.body.appendChild(d);} }
+let _io=null, _tvis=false, _lastY=scrollY, _down=false, _idle;
+function fabSync(){const f=document.getElementById('nowfab'); if(!f||f.hidden) return; f.classList.remove('away');}
+function fabWatch(){ const f=document.getElementById('nowfab'); const t=document.getElementById(f.dataset.target); if(_io) _io.disconnect(); _tvis=false;
+  if(t && 'IntersectionObserver' in window){ _io=new IntersectionObserver(es=>{_tvis=es[0].isIntersecting; fabSync();},{rootMargin:'-120px 0px -80px 0px'}); _io.observe(t);} }
+addEventListener('scroll',()=>{const y=scrollY; if(Math.abs(y-_lastY)>6){_down=y>_lastY && y>200; _lastY=y; fabSync();} clearTimeout(_idle); _idle=setTimeout(()=>{_down=false; fabSync();},1200);},{passive:true});
+
+// 일정에 맞춘 날씨 (tenki.jp 예보 스냅샷)
+const WX={
+ updated:'11/19 09:45',
+ kyoto:{name:'교토',issued:'11/18 17:00 발표',url:'https://tenki.jp/forecast/6/29/6110/26100/',obsUrl:'https://tenki.jp/amedas/6/29/61286.html',now:{t:12.8,at:'11/19 09:30',r:0},days:{
+   19:{ic:'🌤',w:'맑고 가끔 흐림',hi:13,lo:9,pop:[10,30,30,20]},
+   20:{ic:'⛅',w:'흐린 뒤 맑음',hi:11,lo:5,pop:[null,40,40,null]},
+   21:{ic:'🌤',w:'맑고 가끔 흐림',hi:13,lo:3,pop:[null,20,20,null]},
+   22:{ic:'🌤',w:'맑고 가끔 흐림',hi:12,lo:2,pop:[null,40,40,null]}}},
+ osaka:{name:'오사카',issued:'11/19 07:00 발표',url:'https://tenki.jp/forecast/6/30/6200/27100/',obsUrl:'https://tenki.jp/amedas/6/30/62078.html',now:{t:16.7,at:'11/18 21:30',r:0},days:{
+   19:{ic:'🌤',w:'맑고 가끔 흐림',hi:15,lo:13,pop:[null,40,0,40]},
+   20:{ic:'🌦',w:'비 온 뒤 맑음',hi:12,lo:8,pop:[70,40,40,10]},
+   21:{ic:'🌦',w:'맑고 가끔 비',hi:12,lo:7,pop:[null,50,50,null]},
+   22:{ic:'☀️',w:'맑음',hi:13,lo:5,pop:[null,10,10,null]}}}
+};
+// 일정상 위치: 2일차 12:40 이후 오사카
+const obsFresh=(o)=>{ if(!o||!o.at) return false; const [md,hm]=o.at.split(' '); const [M,D]=md.split('/').map(Number); const [h,m]=hm.split(':').map(Number); const t=new Date(2026,M-1,D,h,m); const {k}=kstNow(); return (k-t)/60000<=90 && (k-t)>=-10*60000; };
+const cityAt=(day,mins)=> day===19?'kyoto' : (day===20 && mins<13*60+30?'kyoto':'osaka');
+
+// Pages 전용: Open-Meteo 실시간 날씨 (키 불필요). 실패하면 위 예보 스냅샷 유지.
+const WMO=c=>c===0?['☀️','맑음']:c<=2?['🌤','맑고 가끔 흐림']:c===3?['☁️','흐림']:c<=48?['🌫','안개']:c<=57?['🌦','이슬비']:c<=67?['🌧','비']:c<=77?['🌨','눈']:c<=82?['🌦','소나기']:['⛈','뇌우'];
+const GEO={kyoto:[35.0037,135.7586],osaka:[34.6687,135.5013]};
+async function liveWx(){
+  try{
+    await Promise.all(Object.entries(GEO).map(async([c,[la,lo]])=>{
+      const u=`https://api.open-meteo.com/v1/forecast?latitude=${la}&longitude=${lo}&current=temperature_2m,precipitation,weather_code&hourly=precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&start_date=2026-11-19&end_date=2026-11-22`;
+      const r=await fetch(u,{cache:'no-store'}); if(!r.ok) throw new Error(r.status); const j=await r.json();
+      const cur=j.current; const [cd,ct]=cur.time.split('T'); const [,M,D]=cd.split('-');
+      WX[c].now={t:cur.temperature_2m,at:`${M}/${D} ${ct}`,r:cur.precipitation||0,code:cur.weather_code};
+      j.daily.time.forEach((t,i)=>{const day=+t.slice(8,10); const h=j.hourly.precipitation_probability.slice(i*24,i*24+24);
+        const slot=a=>{const v=a.filter(x=>x!=null);return v.length?Math.max(...v):null};
+        const [ic,w]=WMO(j.daily.weather_code[i]);
+        WX[c].days[day]={ic,w,hi:Math.round(j.daily.temperature_2m_max[i]),lo:Math.round(j.daily.temperature_2m_min[i]),pop:[slot(h.slice(0,6)),slot(h.slice(6,12)),slot(h.slice(12,18)),slot(h.slice(18,24))]};});
+      WX[c].issued='Open-Meteo 실시간';
+    }));
+    const {k}=kstNow(); WX.updated=`${String(k.getMonth()+1).padStart(2,'0')}/${String(k.getDate()).padStart(2,'0')} ${String(k.getHours()).padStart(2,'0')}:${String(k.getMinutes()).padStart(2,'0')}`; WX.live=true;
+    const open=document.getElementById('wxfab')?.classList.contains('open'); renderWx(); if(open) document.getElementById('wxfab').classList.add('open');
+  }catch(e){ /* 네트워크 실패 시 스냅샷 유지 */ }
+}
+function renderWx(){
+  let box=document.getElementById('wxfab');
+  if(!box){box=document.createElement('div');box.id='wxfab';box.className='wxfab';document.body.appendChild(box);}
+  const {k}=kstNow(); const y=k.getFullYear(), mo=k.getMonth()+1; let day=k.getDate(); let mins=k.getHours()*60+k.getMinutes();
+  if(y!==2026||mo!==11||day>22){box.hidden=true;return;}
+  let pre=false; if(day<19){day=19;mins=0;pre=true;}
+  const c=cityAt(day,mins), d=WX[c].days[day]; const slot=Math.min(3,Math.floor(mins/360));
+  const p=pre?Math.max(...d.pop.filter(v=>v!=null)):(d.pop[slot]??d.pop.find(v=>v!=null));
+  const rain=d.pop.some(v=>v!=null&&v>=50);
+  const other=c==='kyoto'?'osaka':'kyoto';
+  const row=(cc,dd)=>{const x=WX[cc].days[dd];return `<div class="wr${cc===c&&dd===day?' on':''}"><span class="wd">${dd}일</span><span class="wc">${WX[cc].name}</span><span class="wi">${x.ic}</span><span class="ww">${x.w}</span><span class="wt"><b>${x.hi}°</b>/${x.lo}°</span><span class="wp${Math.max(...x.pop.filter(v=>v!=null))>=50?' hi':''}">☂${Math.max(...x.pop.filter(v=>v!=null))}%</span></div>`};
+  const plan=[[19,'kyoto'],[20,'kyoto'],[20,'osaka'],[21,'osaka'],[22,'osaka']];
+  const o=WX[c].now, fresh=!pre&&obsFresh(o); const raining=fresh&&o.r>0;
+  box.hidden=false;
+  box.innerHTML=`<div class="wxpanel" role="dialog" aria-label="일정별 날씨"><div class="wh"><b>일정에 맞춘 날씨</b><button class="wx-x" aria-label="닫기">✕</button></div>${fresh?`<div class="wnow"><span>${WX[c].name} 지금</span><b>${o.t.toFixed(1)}°</b><span class="wa">${o.at.split(' ')[1]} 관측 · ${o.r>0?'비 '+o.r+'mm/h':'비 없음'}</span><a href="${WX[c].obsUrl}" target="_blank" rel="noopener">관측 ↗</a></div>`:''}
+   ${plan.map(([dd,cc])=>row(cc,dd)).join('')}
+   <div class="wn">☂ 표시는 그날 가장 높은 강수확률입니다. 50% 이상이면 우산을 챙기세요.<br>${WX.live?`<b>${WX.updated} 실시간 갱신</b> · Open-Meteo (페이지를 열 때·10분마다)`:`<b>${WX.updated} 갱신</b> · 교토 ${WX.kyoto.issued} · 오사카 ${WX.osaka.issued} (tenki.jp)`}</div>
+   <div class="wl"><a href="${WX[c].url}" target="_blank" rel="noopener">${WX[c].name} 실시간 예보 ↗</a><a href="${WX[other].url}" target="_blank" rel="noopener">${WX[other].name} ↗</a></div></div>
+   <button class="wxpill${rain||raining?' rain':''}" aria-expanded="false" aria-label="${WX[c].name} 날씨 자세히"><span class="ic">${raining?'🌧':d.ic}</span><span class="ct">${WX[c].name}</span>${fresh?`<span class="nw">지금</span><b>${Math.round(o.t)}°</b>`:`<b>${d.hi}°</b><span class="lo">/${d.lo}°</span>`}${raining?'<span class="pp">비 오는 중</span>':`<span class="pp">☂${p}%</span>`}</button>`;
+  const pill=box.querySelector('.wxpill'), pan=box.querySelector('.wxpanel');
+  pill.onclick=()=>{const o=!box.classList.contains('open'); box.classList.toggle('open',o); pill.setAttribute('aria-expanded',o);};
+  box.querySelector('.wx-x').onclick=()=>{box.classList.remove('open');pill.setAttribute('aria-expanded','false');};
+}
+function renderNow(){
+  const el=document.getElementById('dday'); const f=findNow(); let fab=document.getElementById('nowfab'); if(!fab){fab=document.createElement('button');fab.id='nowfab';fab.className='nowfab';fab.hidden=true;fab.setAttribute('aria-label','지금 일정으로 이동');document.body.appendChild(fab);}
+  if(f.pre){ el.textContent='D-'+f.pre; el.removeAttribute('role'); fab.hidden=true; document.body.classList.remove('hasfab'); return; }
+  if(f.post){ el.textContent='여행 완료'; fab.hidden=true; document.body.classList.remove('hasfab'); return; }
+  const d=DAYS[f.di]; const it=d.items[f.i];
+  el.textContent = f.mode==='tomorrow' ? `여행 ${f.di}일차` : `여행 ${f.di+1}일차`;
+  el.setAttribute('role','button'); el.style.cursor='pointer'; el.onclick=()=>goItem(f.di,f.i);
+  const lab = f.mode==='now'?'':(f.mode==='next'?'다음':'내일');
+  const ks=(PL[d.id]||{})[it[0]]; const nm = ks ? (typeof ks[0]==='string'?SHORT[ks[0]]:ks[0].name)+(ks.length>1?' 외':'') : plain(it[1]).replace(/\s*→.*/,'');
+  fab.style.cssText=C(d.n);
+  fab.innerHTML=`<span class="dot${f.mode==='now'?' live':''}"></span>${lab?`<span class="lb">${lab}</span>`:''}<span class="tm">${it[0]}</span><span class="nm">${nm}</span><span class="ar">›</span>`; fab.title=`${it[0]} ${plain(it[1])}`; fab.dataset.target=`${d.id}-i${f.i}`; fabWatch();
+  fab.onclick=()=>goItem(f.di,f.i); fab.hidden=false; document.body.classList.add('hasfab'); ensureSpace();
+}
+
+
+document.getElementById('summaryCards').innerHTML = DAYS.map(d =>
+  `<a href="#${d.id}" style="${C(d.n)}"><span class="badge">${d.tag}</span><h3>${d.title}</h3><p>${d.blurb}</p><span class="stay">${d.stay}</span></a>`).join('');
+
+const mb = (o,c) => `<span class="mapbtn">${MAPICO}<span class="o">${o}</span><span class="c">${c}</span>${CHEV}</span>`;
+document.getElementById('days').innerHTML = DAYS.map(d => {
+  const stops=[d.legs[0][0], ...d.legs.map(l=>l[1])];
+  const dayMap = d.maps.length ? `<details class="fold daymap"><summary><span class="ttl2">이날 전체 경로 지도<small>방문 순서와 동선을 지도 위에 표시 · 누르면 펼쳐집니다</small></span>${mb('지도 보기','지도 접기')}</summary><div class="body">${d.maps.map((m,i)=>`<div class="ovmap" id="dm-${d.id}-${i}"></div>`).join('')}</div></details>` : '';
+  return `<section id="${d.id}" style="${C(d.n)}">
+    <div class="dayhead"><div><span class="badge">${d.tag}</span><h2>${d.title}</h2></div></div>
+    <div class="flow">${stops.map((k,i)=>`${i?'<span class="arr">→</span>':''}<span class="stop"><b>${i+1}</b>${SHORT[k]}</span>`).join('')}</div>
+    <details class="tt" open><summary>시간표</summary><div class="rklegend"><span class="rk cash">💴 현금</span><span class="rk off">🚫 휴무일</span><span class="rk hr">🕒 영업시간</span><span class="rk late">⏰ 마감 임박</span><span class="rk warn">⚠ 대기·주의</span></div><ul>${d.items.map(([t,w,m,k],i)=>{const g=tagMeta(t,m);return `<li id="${d.id}-i${i}" class="${k?'key':''} ${g.risk?'risk':''}"><span class="t num">${t}</span><span class="w">${w}${g.html?`<span style="display:block">${g.html}</span>`:''}${plBtns(d.id,t)}</span></li>`}).join('')}</ul></details>
+    ${(SKIPS[d.id]||[]).length?`<div class="sh" style="margin-top:var(--s5)"><h2 style="font-size:var(--t-lg)">일정에서 뺀 곳</h2><p>문서에는 있지만 동선상 넣지 않은 곳과 가는 방법</p></div><div class="skips">${SKIPS[d.id].map(([n,i,r,h,q])=>`<div class="skip"><div class="t1">${n}</div><div class="t3">${i}</div><div class="why"><b>뺀 이유</b>${r}</div><div class="how"><b>가려면</b>${h}</div><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}" target="_blank" rel="noopener">구글 지도에서 위치 보기 ↗</a></div>`).join('')}</div>`:''}
+    <div class="sh" style="margin-top:var(--s5)"><h2 style="font-size:var(--t-lg)">이동 경로</h2><p>구간을 누르면 구글 지도 경로가 펼쳐집니다</p></div>
+    ${dayMap}
+    <div class="legrows">${d.legs.map((l,j)=>`<details class="lg"><summary><span class="n">${j+1}</span>
+      <span><span class="ab">${SHORT[l[0]]} <i>→</i> ${SHORT[l[1]]}</span><span class="mt"><span class="mode">${IC[l[2]]}${MODE[l[2]]}</span><span class="num">${l[3]}</span></span></span>
+      ${mb('지도','접기')}</summary>
+      <div class="lb"><img src="legs/${l[0]}-${l[1]}.jpg" alt="구글 지도 경로: ${SHORT[l[0]]}에서 ${SHORT[l[1]]}까지" loading="lazy">${l[4]?`<div class="note">${l[4]}</div>`:''}<a class="btn" href="${DIR(l[0],l[1],l[2])}" target="_blank" rel="noopener">구글 지도에서 길찾기</a></div></details>`).join('')}</div>
+  </section>`}).join('');
+
+
+
+// calendar
+(function(){
+  const START=7*60, END=23*60, PX=1.6, hh=60*PX, H=(END-START)*PX;
+  const cal=document.getElementById('cal'); cal.style.setProperty('--hh',hh+'px');
+  let ax=`<div class="axis"><div class="sp"></div><div class="tk" style="height:${H}px">`;
+  for(let h=8;h<=22;h++) ax+=`<span style="top:${(h*60-START)*PX}px">${h}시</span>`;
+  ax+='</div></div>';
+  const cols=DAYS.map(d=>{
+    let ev='';
+    d.items.forEach(([t,w,m,k],i)=>{
+      let st=Math.max(toMin(t),START); if(st>=END) return;
+      let en = i+1<d.items.length ? toMin(d.items[i+1][0]) : st+60;
+      en=Math.min(en,END); const dur=en-st;
+      const g=tagMeta(t,m); const name=w.replace(/<[^>]+>/g,'');
+      const icons=(m&&/현금/.test(m)?'💴':'')+(g.html.includes('rk late')?'⏰':'')+(m&&/흡연|줄|대기|좌석/.test(m)?'⚠':'');
+      const short=dur<40;
+      ev+=`<a class="ev ${k?'':'minor'} ${g.risk?'has-risk':''} ${short?'short':''}" href="#${d.id}-i${i}" data-go="${d.id}-i${i}" style="top:${(st-START)*PX+1}px;height:${Math.max(dur*PX-3,20)}px" title="${t} ${name}${m?' · '+m:''}"><span class="tm">${t}</span>${short?'':(icons?`<span class="ri">${icons}</span><br>`:'<br>')}<b>${name}</b>${short&&icons?`<span class="ri">${icons}</span>`:''}${g.risk?'<span class="chk">확인</span>':''}<span class="go" aria-hidden="true">›</span></a>`;
+    });
+    return `<div class="day" style="${C(d.n)}"><div class="hd">${d.tag.split(' · ')[0]}<small>${d.tag.split(' · ')[1]}</small></div><div class="col" style="height:${H}px">${ev}</div></div>`;
+  }).join('');
+  cal.innerHTML=ax+cols;
+  window.drawNowLine=function(){
+    cal.querySelectorAll('.nowl,.nowtk').forEach(e=>e.remove());
+    const {k}=kstNow(); if(k.getFullYear()!==2026||k.getMonth()!==10) return;
+    const di=k.getDate()-19, mins=k.getHours()*60+k.getMinutes();
+    if(di<0||di>3||mins<START||mins>END) return;
+    const top=(mins-START)*PX, hm=String(k.getHours()).padStart(2,'0')+':'+String(k.getMinutes()).padStart(2,'0');
+    cal.querySelectorAll('.col').forEach((c,i)=>{const l=document.createElement('div'); l.className='nowl'+(i===di?' on':''); l.style.top=top+'px'; c.appendChild(l);});
+    const t=document.createElement('span'); t.className='nowtk'; t.style.top=top+'px'; t.textContent=hm; cal.querySelector('.axis .tk').appendChild(t);
+  };
+  drawNowLine();
+})();
+
+// overview maps on Google base images
+const wx=(lng,z)=>(lng+180)/360*256*2**z;
+const wy=(lat,z)=>{const s=Math.sin(lat*Math.PI/180);return (0.5-Math.log((1+s)/(1-s))/(4*Math.PI))*256*2**z};
+const COL = n => `var(--d${n})`, HB='var(--ink)';
+function ovmap(el, base, routes, pins, extra){
+  const m=BASE[base], XY=p=>[(wx(p.lng,m.z)-m.ox)*m.s,(wy(p.lat,m.z)-m.oy)*m.s];
+  const k=base==='osaka'?1.75:2;
+  let o=`<svg viewBox="0 0 ${m.w} ${m.h}" role="img" aria-label="${base==='kyoto'?'교토':'오사카'} 경로 지도"><image href="base/${base}.jpg" width="${m.w}" height="${m.h}"/><rect width="${m.w}" height="${m.h}" fill="#fff" opacity=".18"/>`;
+  if(extra) o+=extra(XY);
+  routes.forEach(r=>{const d=r.seq.map((kk,i)=>{const[x,y]=XY(P[kk]);return(i?'L':'M')+x.toFixed(0)+' '+y.toFixed(0)}).join(' ');
+    o+=`<path d="${d}" fill="none" stroke="#fff" stroke-width="${9*k}" stroke-linejoin="round" stroke-linecap="round" opacity=".9"/><path d="${d}" fill="none" stroke="${COL(r.n)}" stroke-width="${4.5*k}" stroke-linejoin="round" stroke-linecap="round"/>`});
+  const R=15*k;
+  pins.forEach(([kk,col,lab],i)=>{const[x,y]=XY(P[kk]); if(y<0||y>m.h||x<0||x>m.w) return;
+    o+=`<g><circle cx="${x}" cy="${y}" r="${R}" fill="${col}" stroke="#fff" stroke-width="${3.5*k}"/><text x="${x}" y="${y+R*.36}" text-anchor="middle" font-size="${R}" font-weight="800" fill="#fff" font-family="var(--font)">${i+1}</text></g>`});
+  o+='</svg><span class="gm">지도 © Google</span>';
+  const host=document.getElementById(el); host.innerHTML=o;
+  host.insertAdjacentHTML('afterend',`<div class="chips">${pins.map(([kk,col,lab],i)=>`<span><b style="--c:${col}">${i+1}</b>${lab}</span>`).join('')}</div>`);
+}
+const illum = XY=>{const a=XY({lat:34.7005,lng:135.4975}),b=XY({lat:34.6655,lng:135.5005});return `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="var(--d3)" stroke-width="26" stroke-linecap="round" opacity=".22"/><line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="var(--d3)" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round"/>`};
+// per-day maps
+DAYS.forEach(d=>d.maps.forEach((m,i)=>{
+  const uniq=[]; m.seq.forEach(k=>{if(!uniq.includes(k)) uniq.push(k)});
+  ovmap(`dm-${d.id}-${i}`, m.base, [{n:d.n, seq:m.seq}], uniq.map(k=>[k, (k==='RH'||k==='CH')?HB:COL(d.n), SHORT[k]]), m.base==='osaka'?illum:null);
+}));
+// whole-trip maps
+const kyPins=[['RH',HB,'교토 호텔'],...['KU','WE','KI','SM','UQ','SO','KT','TM','IS'].map(k=>[k,COL(1),SHORT[k]]),...['YM','BB','TG','KK','MO'].map(k=>[k,COL(2),SHORT[k]])];
+ovmap('ovKyoto','kyoto',[{n:2,seq:DAYS[1].maps[0].seq},{n:1,seq:DAYS[0].maps[0].seq}],kyPins);
+const osPins=[['CH',HB,'오사카 호텔'],...['KO','PA','DG','YO'].map(k=>[k,COL(2),SHORT[k]]),...['MY','DR','HK','BN','LU','GF','HD','KTS'].map(k=>[k,COL(3),SHORT[k]])];
+ovmap('ovOsaka','osaka',[{n:3,seq:DAYS[2].maps[0].seq},{n:2,seq:DAYS[1].maps[1].seq}],osPins,illum);
+
+
+// risks
+const RISKS=[
+  ['fix','반영 완료','요일 휴무 맞춤','momoharu(목)·야마모토(목)는 2일차 금요일, 쿠룬(화·수)은 목요일, 토미센·마루요시(일)는 일요일을 피하고, 키타스시(월)는 토요일에 배치했습니다.','SOU・SOU(수)·도레미(월·화)도 영업일에 맞췄습니다.'],
+  ['fix','반영 완료','마루요시 영업시간','문서에는 5시로 적혀 있지만 구글 지도 기준 6–13시입니다.','3일차 토요일 8시로 잡았습니다.'],
+  ['fix','반영 완료','교토 이쎈 위치','문서 링크는 교토역 근처 와규버거&디저트 이쎈입니다.','1일차 토미센 저녁 뒤 디저트로 이어지게 했습니다.'],
+  ['warn','주의','1일차 일정 밀도','교토 일정이 12:40부터 22:20까지 이어집니다.','지치면 유니클로·SOU・SOU를 건너뛰고 교토타워로 바로 가세요.'],
+  ['warn','준비','현금 전용','momoharu·커피샵 야마모토는 현금, 쿠룬도 현금입니다.','엔화 현금을 넉넉히 준비하세요.'],
+  ['warn','주의','킷사 도레미','실내 흡연이 허용되는 매장입니다.','오픈 직후 방문을 권합니다.'],
+  ['warn','주의','단풍 성수기 혼잡','11월 하순 아라시야마·기요미즈데라가 가장 붐빕니다.','아라시야마는 8시 전후 도착으로 짰습니다.'],
+  ['warn','확인 필요','유니클로 영업시간','교토 가와라마치점 영업시간은 따로 확인하지 못했습니다.','보통 21시 전후까지라 18:20 방문은 무리가 없을 것으로 보입니다.'],
+];
+const ICO={fix:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2zM12 10v4M12 17.5v.5"/></svg>'};
+document.getElementById('risks').innerHTML=RISKS.map(([k,s,t,a,f])=>`<div class="row top"><span class="ico" style="${k==='fix'?'background:var(--brand-weak);color:var(--brand)':'background:var(--d3w);color:var(--d3)'}">${ICO[k]}</span><div class="tx"><div class="t1">${t}</div><div class="t2">${a}</div><div class="t3">${f}</div></div><span class="st ${k}">${s}</span></div>`).join('');
+
+// checklist
+const CHECK=['JR 하루카 간사이공항 → 교토 (1일차) 사전 구매','JR 하루카 신오사카 → 간사이공항 (4일차 11시대) 사전 구매','엔화 현금 준비 (현금 전용 가게 3곳)','ICOCA 등 교통카드','해외 데이터(eSIM·로밍), 보조배터리','걷기 편한 신발, 밤 산책용 겉옷 (3일차 3.5km 도보)','구글 지도 앱에서 교토·오사카 오프라인 지도 받기','호텔 짐 보관 가능 여부 확인 (두 호텔 모두)'];
+let saved={}; try{saved=JSON.parse(localStorage.getItem('osaka-trip-check')||'{}')}catch(e){}
+const ul=document.getElementById('checklist');
+ul.innerHTML=CHECK.map((t,i)=>`<li><label for="ck${i}"><input type="checkbox" id="ck${i}" ${saved[i]?'checked':''}><span>${t}</span></label></li>`).join('');
+ul.addEventListener('change',e=>{saved[e.target.id.slice(2)]=e.target.checked;try{localStorage.setItem('osaka-trip-check',JSON.stringify(saved))}catch(err){}});
+
+// offline
+const OFF=[["00-summary", "요약 · 전체 지도"], ["00b-calendar", "캘린더"], ["01-day1-p1", "1일차 · 11.19 목 (1/3)"], ["01-day1-p2", "1일차 · 11.19 목 (2/3)"], ["01-day1-p3", "1일차 · 11.19 목 (3/3)"], ["02-day2-p1", "2일차 · 11.20 금 (1/3)"], ["02-day2-p2", "2일차 · 11.20 금 (2/3)"], ["02-day2-p3", "2일차 · 11.20 금 (3/3)"], ["03-day3-p1", "3일차 · 11.21 토 (1/2)"], ["03-day3-p2", "3일차 · 11.21 토 (2/2)"], ["04-day4", "4일차 · 11.22 일"], ["05-info", "행사 · 리스크 · 준비물"]];
+document.getElementById('offlineGrid').innerHTML=OFF.map(([f,t])=>`<figure><a class="thumb" href="offline/${f}.jpg" target="_blank" rel="noopener"><img src="offline/${f}.jpg" alt="오프라인 저장용 이미지: ${t}" loading="lazy"></a><figcaption>${t}</figcaption></figure>`).join('');
+
+document.addEventListener('click',e=>{const a=e.target.closest('.cal .ev[data-go]'); if(!a) return; e.preventDefault();
+  const li=document.getElementById(a.dataset.go); if(!li) return; const dt=li.closest('details'); if(dt) dt.open=true;
+  const ab=document.querySelector('.appbar'); const off=(ab?ab.querySelector('.tabs').getBoundingClientRect().height:0)+24;
+  window.scrollTo({top:li.getBoundingClientRect().top+scrollY-off,behavior:'smooth'}); history.replaceState(null,'','#'+a.dataset.go);
+  li.classList.remove('flash'); void li.offsetWidth; li.classList.add('flash');});
+
+(()=>{const tabs=[...document.querySelectorAll('.tabs a[href^="#"]')]; if(!tabs.length) return;
+ const secs=tabs.map(a=>document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean).sort((x,y)=>x.compareDocumentPosition(y)&4?-1:1);
+ const bar=document.querySelector('.tabs .wrap'); let cur=null, lock=0;
+ function set(id){ if(id===cur) return; cur=id; tabs.forEach(a=>{const on=a.getAttribute('href')==='#'+id; a.classList.toggle('on',on); if(on){a.setAttribute('aria-current','true'); const l=a.offsetLeft-bar.clientWidth/2+a.offsetWidth/2; bar.scrollTo({left:l,behavior:'smooth'});} else a.removeAttribute('aria-current');}); }
+ function spy(){ if(Date.now()<lock) return; const ab=document.querySelector('.appbar'); const y=(ab?ab.getBoundingClientRect().bottom:0)+40; let id=secs[0].id;
+   for(const s of secs){ if(s.getBoundingClientRect().top<=y) id=s.id; }
+   if(innerHeight+scrollY>=document.documentElement.scrollHeight-4) id=secs[secs.length-1].id;
+   set(id); }
+ tabs.forEach(a=>a.addEventListener('click',()=>{set(a.getAttribute('href').slice(1)); lock=Date.now()+1200;}));
+ addEventListener('scroll',spy,{passive:true}); addEventListener('resize',spy); spy();})();
+
+renderNow(); renderWx(); setInterval(()=>{renderNow();renderWx();window.drawNowLine&&drawNowLine();},60000);
+liveWx(); setInterval(liveWx,10*60000); document.addEventListener('visibilitychange',()=>{if(!document.hidden) liveWx();});
+document.addEventListener('click',e=>{const b=document.getElementById('wxfab'); if(b&&b.classList.contains('open')&&!b.contains(e.target)) b.classList.remove('open');});
+
+(()=>{const ab=document.querySelector('.appbar'); let ly=scrollY, acc=0;
+ addEventListener('scroll',()=>{const y=scrollY, dy=y-ly; ly=y;
+   if(y<120){ab.classList.remove('compact'); acc=0; return;}
+   if((dy>0)!==(acc>0)) acc=0; acc+=dy;
+   if(acc>24) ab.classList.add('compact'); else if(acc<-24) ab.classList.remove('compact');
+ },{passive:true});})();
+</script>
+
+</body>
+</html>
